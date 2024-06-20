@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Blog</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, textarea {
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+        }
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #575757;
+        }
+        .witty-text {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container">
+        <h1>Create Your Masterpiece</h1>
+        <p class="witty-text">"A blank page is no empty space. It is brimming with potential..."</p>
+        <form action="/blog" method="POST" enctype="multipart/form-data">
+            <label for="title">Blog Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter the title of your blog" required>
+            
+            <label for="image">Cover Image</label>
+            <input type="file" id="image" name="image">
+            
+            <label for="content">Content</label>
+            <textarea id="content" name="content" placeholder="Write your blog content here..." required></textarea>
+            
+            <div class="button-container">
+                <button type="submit">Publish Blog</button>
+            </div>
+        </form>
+        <p class="witty-text">"Write something worth reading, or do something worth writing about."</p>
+    </div>
+</body>
+</html>

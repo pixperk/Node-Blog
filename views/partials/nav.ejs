@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Navbar with Dropdown</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 14px 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .navbar .logo a {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .navbar .links {
+            display: flex;
+            align-items: center;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown .dropbtn {
+            display: flex;
+            align-items: center;
+            color: white; /* Ensure dropdown button text color is correct */
+        }
+        .dropdown .dropbtn::after {
+            content: '▼';
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #575757;
+        }
+        .alert {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .alert .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .alert .closebtn:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">BlogDotCom</a>
+        </div>
+        <div class="links">
+            <a href="/">Home</a>
+            <% if (locals.user) { %>
+                <a href="/blog/new">Blog+</a>
+            <% } else { %>
+                <a href="/user/signin">Sign In</a>
+                <a href="/user/signup">Create account</a>
+            <% } %>
+            <% if (locals.user) { %>
+                <div class="dropdown">
+                    <a href="#!" class="dropbtn"><%= locals.user.email %></a>
+                    <div class="dropdown-content">
+                        <a href="/user/logout">Log Out</a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <% if (locals.error) { %>
+        <div class="alert">
+            <span><%= locals.error %></span>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    <% } %>
+    
+</body>
+</html>
