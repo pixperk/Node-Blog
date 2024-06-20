@@ -2,7 +2,7 @@ const { Router } = require("express");
 const multer = require("multer");
 const path = require("path");
 
-const Blog = require('../models/blog.model')
+const Blog = require("../models/blog.model");
 
 const router = Router();
 
@@ -22,14 +22,23 @@ router.get("/new", (req, res) => {
   return res.render("addblog", { user: req.user });
 });
 
-router.post("/", upload.single("image"), async(req, res) => {
-    const {title,content} = req.body
-    const blog = await Blog.create({
+router.get("/:id", async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  return res.render("blog", {
+    user: req.user,
+    blog,
+   
+  });
+});
+
+router.post("/", upload.single("image"), async (req, res) => {
+  const { title, content } = req.body;
+  const blog = await Blog.create({
     content,
     title,
-    createdBy:req.user._id,
-    coverImageURL : `uploads/${req.file.filename}`
-  })
+    createdBy: req.user._id,
+    coverImageURL: `uploads/${req.file.filename}`,
+  });
   return res.redirect(`/blog/${blog._id}`);
 });
 

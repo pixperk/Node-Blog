@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= blog.title %></title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 100px auto 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .blog-header h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin: 0;
+        }
+        .blog-header p {
+            color: #999;
+            font-size: 0.9em;
+        }
+        .blog-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .blog-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container">
+        <div class="blog-header">
+            <h1><%= blog.title %></h1>
+            <p>Posted on <%= new Date(blog.createdAt).toLocaleDateString() %></p>
+        </div>
+        <img src="/<%= blog.coverImageURL %>">
+        <div class="blog-content">
+            <p><%= blog.content %></p>
+        </div>
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>
