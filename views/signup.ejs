@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogDotCom - Signup</title>
-    <link rel="stylesheet" href="/styles.css"> <!-- Link to external CSS file -->
+   
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -52,7 +52,7 @@
             margin-bottom: 0.5em;
             color: #666;
         }
-        input {
+        input, button {
             width: 100%;
             padding: 0.75em;
             border: 1px solid #ddd;
@@ -92,25 +92,29 @@
     <%- include('./partials/nav') %> <!-- Include navbar -->
     <div class="form-container">
         <h1>Sign Up</h1>
-        <form action="/user/signup" method="post">
+        <form action="/user/signup" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="What's your full name?">
+                <input type="text" id="fullName" name="fullName" placeholder="What's your full name?" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your fancy email">
+                <input type="email" id="email" name="email" placeholder="Enter your fancy email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Make it super secret">
+                <input type="password" id="password" name="password" placeholder="Make it super secret" required>
+            </div>
+            <div class="form-group">
+                <label for="profilePicture">Profile Picture</label>
+                <input type="file" id="profilePicture" name="profilePicture" required>
             </div>
             <div class="form-group">
                 <button type="submit">Join the Club</button>
             </div>
         </form>
         <div class="form-footer">
-            Already a member? <a href="signin.ejs">Sign In</a>
+            Already a member? <a href="/user/signin">Sign In</a>
         </div>
     </div>
 </body>
