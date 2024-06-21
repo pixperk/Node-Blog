@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 const path = require("path");
 const userRoute = require("./routes/user.route");
@@ -10,10 +12,10 @@ const {
 const Blog = require("./models/blog.model");
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/blogdotcom")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("Mongo DB Connected Successfully"));
 
 app.set("view engine", "ejs");
